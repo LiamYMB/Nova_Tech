@@ -9,7 +9,7 @@ window.onload = function() {
     }
 
     sesion = JSON.parse(datosSesion);
-    document.getElementById("bienvenidoUsuario").innerText = "Bienvenido: Administrador Nova-Tech";
+    document.getElementById("bienvenidoUsuario").innerText = "Bienvenido: "+sesion.name.firstname+" "+sesion.name.lastname;
 
     var contenedor = document.getElementById("foto");
     var imagen = document.createElement("img");
@@ -39,22 +39,27 @@ async function obtenerProductos() {
 }
 
 function mostrarProductos() {
+    var kpi = document.getElementById("kpiProductos");
+    if (kpi != null) {
+        kpi.innerText = listaProductos.length;
+    }
+
     var tbody = document.getElementById("tablaProductos");
-    tbody.innerHTML = "";
+    if (tbody != null) {
+        tbody.innerHTML = "";
+        document.getElementById("contadorProductos").innerText = listaProductos.length + " productos";
 
-    document.getElementById("contadorProductos").innerText = listaProductos.length + " productos";
-    document.getElementById("kpiProductos").innerText = listaProductos.length;
-
-    for (let i = 0; i < listaProductos.length; i++) {
-        var prod = listaProductos[i];
-        var fila = document.createElement("tr");
-        fila.innerHTML =
-            "<td>" + prod.id + "</td>" +
-            "<td>" + prod.title + "</td>" +
-            "<td>$" + prod.price + "</td>" +
-            "<td><button type='button' class='btn btn-success btn-sm' onclick='cargaEditar(" + prod.id + ");'>Editar</button></td>" +
-            "<td><button type='button' class='btn btn-danger btn-sm' onclick='Eliminar(" + prod.id + ");'>Eliminar</button></td>";
-        tbody.appendChild(fila);
+        for (let i = 0; i < listaProductos.length; i++) {
+            var prod = listaProductos[i];
+            var fila = document.createElement("tr");
+            fila.innerHTML =
+                "<td>" + prod.id + "</td>" +
+                "<td>" + prod.title + "</td>" +
+                "<td>$" + prod.price + "</td>" +
+                "<td><button type='button' class='btn btn-success btn-sm' onclick='cargaEditar(" + prod.id + ");'>Editar</button></td>" +
+                "<td><button type='button' class='btn btn-danger btn-sm' onclick='Eliminar(" + prod.id + ");'>Eliminar</button></td>";
+            tbody.appendChild(fila);
+        }
     }
 }
 
