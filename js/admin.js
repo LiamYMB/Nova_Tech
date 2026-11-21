@@ -1,5 +1,6 @@
 var listaProductos = [];
 var sesion = null;
+var imagenProductoLocal = "";
 
 window.onload = function() {
     var datosSesion = localStorage.getItem("sesionUsuario");
@@ -54,6 +55,7 @@ function mostrarProductos() {
             var fila = document.createElement("tr");
             fila.innerHTML =
                 "<td>" + prod.id + "</td>" +
+                "<td><img src=\"" + (prod.image || "") + "\" alt=\"Imagen de " + prod.title + "\" class=\"imagen-producto\" onerror=\"this.hidden=true\"></td>" +
                 "<td>" + prod.title + "</td>" +
                 "<td>$" + prod.price + "</td>" +
                 "<td><button type='button' class='btn btn-success btn-sm' onclick='cargaEditar(" + prod.id + ");'>Editar</button></td>" +
@@ -68,20 +70,37 @@ function validarProducto() {
     var precio = document.getElementById("precioProducto").value;
     var boton = document.getElementById("btnGuardar");
 
-    if (nombre != "" && precio != "") {
+    if (nombre != "" && precio != "" && imagenProductoLocal != "") {
         boton.disabled = false;
     } else {
         boton.disabled = true;
     }
 }
 
+function previsualizarImagen() {
+    var archivo = document.getElementById("imagenProducto").files[0];
+    var vistaPrevia = document.getElementById("vistaPreviaProducto");
+
+    imagenProductoLocal = "";
+    vistaPrevia.hidden = true;
+    vistaPrevia.removeAttribute("src");
+
+    if (archivo && archivo.type.startsWith("image/")) {
+        imagenProductoLocal = URL.createObjectURL(archivo);
+        vistaPrevia.src = imagenProductoLocal;
+        vistaPrevia.hidden = false;
+    }
+
+    validarProducto();
+}
+
 async function guardarProducto() {
     var nombreInput = document.getElementById("nombreProducto").value;
     var precioInput = document.getElementById("precioProducto").value;
-
     var nuevoProducto = {
         title: nombreInput,
         price: parseFloat(precioInput),
+        image: imagenProductoLocal,
         category: "electronics"
     };
 
@@ -99,6 +118,9 @@ async function guardarProducto() {
 
             document.getElementById("nombreProducto").value = "";
             document.getElementById("precioProducto").value = "";
+            document.getElementById("imagenProducto").value = "";
+            document.getElementById("vistaPreviaProducto").hidden = true;
+            imagenProductoLocal = "";
             document.getElementById("btnGuardar").disabled = true;
         }
     } catch (error) {

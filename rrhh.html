@@ -75,11 +75,6 @@
                 <small class="text-uppercase text-secondary fw-bold mb-2 px-2">Administración</small>
                 <ul class="nav nav-pills flex-column">
                     <li class="nav-item mb-1">
-                        <a class="nav-link text-white" href="seguridad.html">
-                            <i class="bi bi-shield-lock-fill me-2"></i>Seguridad y Auditorías
-                        </a>
-                    </li>
-                    <li class="nav-item mb-1">
                         <a class="nav-link text-white" href="configuracion.html">
                             <i class="bi bi-gear-fill me-2"></i>Configuración
                         </a>
@@ -108,28 +103,7 @@
                                 <label for="empTelefono" class="form-label">Teléfono</label>
                                 <input type="text" class="form-control" id="empTelefono" placeholder="477-123-4567">
                             </div>
-                            <div class="col-md-3">
-                                <label for="empDepto" class="form-label">Departamento</label>
-                                <select class="form-select" id="empDepto">
-                                    <option value="Ventas">Ventas</option>
-                                    <option value="Soporte Técnico">Soporte Técnico</option>
-                                    <option value="Almacén">Almacén</option>
-                                    <option value="Sistemas TI">Sistemas TI</option>
-                                    <option value="Administración">Administración</option>
-                                </select>
-                            </div>
-                            <div class="col-md-3">
-                                <label for="empPuesto" class="form-label">Puesto</label>
-                                <input type="text" class="form-control" id="empPuesto" placeholder="Ej. Especialista Hardware">
-                            </div>
-                            <div class="col-md-2">
-                                <label for="empSalario" class="form-label">Salario ($)</label>
-                                <input type="number" class="form-control" id="empSalario" placeholder="15000">
-                            </div>
-                            <div class="col-md-2">
-                                <label for="empRfc" class="form-label">RFC / CURP</label>
-                                <input type="text" class="form-control" id="empRfc" placeholder="MECA900101XXX">
-                            </div>
+                            
                             <div class="col-md-2 d-grid align-items-end">
                                 <button type="button" id="btnGuardarEmpleado" class="btn btn-success" onclick="agregarEmpleado();">Agregar</button>
                             </div>
@@ -149,10 +123,8 @@
                                     <tr>
                                         <th>ID</th>
                                         <th>Nombre</th>
-                                        <th>Correo / Teléfono</th>
-                                        <th>Departamento / Puesto</th>
-                                        <th>RFC</th>
-                                        <th>Salario</th>
+                                        <th>Correo</th>
+                                        <th>Teléfono</th>
                                         <th>Actualizar</th>
                                         <th>Eliminar</th>
                                     </tr>

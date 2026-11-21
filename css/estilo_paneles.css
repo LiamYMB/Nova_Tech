@@ -1,0 +1,10 @@
+﻿
+.imagen-producto {
+    width: 56px;
+    height: 56px;
+    object-fit: contain;
+    background: #fff;
+    border-radius: 6px;
+    padding: 4px;
+}
+

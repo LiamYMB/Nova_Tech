@@ -76,3 +76,10 @@ body {
     cursor: pointer;
     border-color: #b9b9ca;
 }
+
+#errorLogin {
+    text-align: center;
+    color: red;
+    font-size: 17px;
+    margin-top: 10px;
+}
